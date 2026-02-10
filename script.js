@@ -2,28 +2,29 @@
 // ===== JAVASCRIPT ========
 // =========================
 
-// 1) Monta links do WhatsApp (menu + CTAs)
+// ========================
+// WhatsApp links (menu + CTAs + mini cards)
+// ========================
 (function setupWhatsappLinks(){
-  // pega do <script> do HTML
   const num = (window.WHATSAPP_NUMBER || "5500000000000").toString();
   const base = `https://wa.me/${num}`;
 
   const menu = document.getElementById("menuWhatsapp");
+  const menuMobile = document.getElementById("menuWhatsappMobile");
   const hero = document.getElementById("ctaHero");
   const sobre = document.getElementById("ctaSobre");
-  //const contato = document.getElementById("ctaContato");
 
   if (menu) menu.href = base;
+  if (menuMobile) menuMobile.href = base;
   if (hero) hero.href = base;
   if (sobre) sobre.href = base;
-  //if (contato) contato.href = base;
 
   const footerW1 = document.getElementById("footerWhatsapp");
   const footerW2 = document.getElementById("footerWhatsapp2");
   if (footerW1) footerW1.href = base;
   if (footerW2) footerW2.href = base;
 
-  // Links dos mini-whats com mensagem pronta por serviço
+  // Mini Whats com mensagem por serviço
   document.querySelectorAll(".mini-whats").forEach(link => {
     const service = link.getAttribute("data-service") || "um serviço";
     const msg = `Olá! Gostaria de agendar ${service}. Poderia me informar os horários disponíveis?`;
@@ -31,7 +32,9 @@
   });
 })();
 
-// 2) Scroll suave somente para âncoras internas (#...)
+// ========================
+// Scroll suave (âncoras internas)
+// ========================
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener("click", (e) => {
     const href = a.getAttribute("href");
@@ -45,12 +48,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// 3) Flip cards - Serviços ("Pra você")
-//    + impede que clicar no mini-whats vire o card
+// ========================
+// Flip cards - Serviços
+// ========================
 document.querySelectorAll(".svc-card").forEach(card => {
   card.querySelectorAll(".mini-whats").forEach(link => {
     link.addEventListener("click", (e) => {
-      e.stopPropagation(); // não flipar
+      e.stopPropagation();
     });
   });
 
@@ -75,3 +79,48 @@ document.querySelectorAll(".svc-card").forEach(card => {
     }
   });
 });
+
+// ========================
+// MENU MOBILE (hamburguer drawer)
+// ========================
+(function mobileMenu(){
+  const toggle = document.getElementById("navToggle");
+  const closeBtn = document.getElementById("navClose");
+  const drawer = document.getElementById("mobileMenu");
+  const panel = drawer?.querySelector(".mobile-menu__panel");
+
+  if (!toggle || !drawer || !panel) return;
+
+  const open = () => {
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+
+    const firstLink = drawer.querySelector(".mobile-link, .mobile-cta");
+    if (firstLink) firstLink.focus();
+  };
+
+  const close = () => {
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    toggle.focus();
+  };
+
+  toggle.addEventListener("click", open);
+  closeBtn?.addEventListener("click", close);
+
+  drawer.addEventListener("click", (e) => {
+    if (e.target === drawer) close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer.classList.contains("is-open")) close();
+  });
+
+  drawer.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => close());
+  });
+})();
