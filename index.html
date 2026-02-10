@@ -15,29 +15,53 @@
 
 <body>
   <!--
-    WHATSAPP_NUMBER: coloque aqui no formato internacional sem + e sem espaços.
+    WHATSAPP_NUMBER: coloque aqui no formato internacional, sem + e sem espaços.
     Ex: 5511912345678
   -->
   <script>
     const WHATSAPP_NUMBER = "5500000000000";
-    const WHATSAPP_BASE = `https://wa.me/${WHATSAPP_NUMBER}`;
   </script>
 
-  <!-- HEADER -->
+  <!-- HEADER (desktop + mobile drawer) -->
   <header class="site-header">
     <div class="container navbar">
-      <div class="logo">DELLA</div>
+      <a class="logo" href="#home" aria-label="Ir para o início">DELLA</a>
 
-      <nav aria-label="Menu principal">
+      <!-- Botão hamburguer (mobile) -->
+      <button class="nav-toggle" id="navToggle" type="button"
+        aria-label="Abrir menu"
+        aria-controls="mobileMenu"
+        aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Menu desktop -->
+      <nav class="nav-desktop" aria-label="Menu principal">
         <ul class="menu">
           <li><a href="#home">Bem-vinda</a></li>
           <li><a href="#sobre">A Della</a></li>
           <li><a href="#servicos">Pra você</a></li>
-
-          <!-- Agora vai DIRETO pro WhatsApp -->
           <li><a href="#" class="btn-menu" id="menuWhatsapp">Agende Seu Momento</a></li>
         </ul>
       </nav>
+    </div>
+
+    <!-- MENU MOBILE (drawer) -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="mobile-menu__top">
+          <span class="mobile-menu__brand">DELLA</span>
+          <button class="mobile-menu__close" id="navClose" type="button" aria-label="Fechar menu">✕</button>
+        </div>
+
+        <nav class="mobile-menu__nav" aria-label="Menu mobile">
+          <a href="#home" class="mobile-link">Bem-vinda</a>
+          <a href="#sobre" class="mobile-link">A Della</a>
+          <a href="#servicos" class="mobile-link">Pra você</a>
+
+          <a href="#" class="mobile-cta" id="menuWhatsappMobile">Agende Seu Momento</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -95,7 +119,7 @@
 
       <div class="services-grid">
 
-        <!-- 1: Mãos -->
+        <!-- 1 -->
         <button class="svc-card" type="button" aria-pressed="false">
           <div class="svc-inner">
             <div class="svc-face svc-front">
@@ -116,10 +140,7 @@
               <h3>Cuidados para as Mãos</h3>
               <p>Hidratação, fortalecimento e acabamento impecável para mãos sempre elegantes e bem cuidadas.</p>
 
-              <!-- Mini botão agora é ÍCONE WhatsApp -->
-              <a class="mini-whats"
-                 href="#"
-                 target="_blank" rel="noopener"
+              <a class="mini-whats" href="#" target="_blank" rel="noopener"
                  data-service="Cuidados para as Mãos"
                  aria-label="Agendar Cuidados para as Mãos no WhatsApp">
                 <svg viewBox="0 0 24 24" class="whats-svg" aria-hidden="true">
@@ -133,7 +154,7 @@
           </div>
         </button>
 
-        <!-- 2: Pés -->
+        <!-- 2 -->
         <button class="svc-card" type="button" aria-pressed="false">
           <div class="svc-inner">
             <div class="svc-face svc-front">
@@ -168,7 +189,7 @@
           </div>
         </button>
 
-        <!-- 3: Facial -->
+        <!-- 3 -->
         <button class="svc-card" type="button" aria-pressed="false">
           <div class="svc-inner">
             <div class="svc-face svc-front">
@@ -202,7 +223,7 @@
           </div>
         </button>
 
-        <!-- 4: Corporais -->
+        <!-- 4 -->
         <button class="svc-card" type="button" aria-pressed="false">
           <div class="svc-inner">
             <div class="svc-face svc-front">
@@ -234,7 +255,7 @@
           </div>
         </button>
 
-        <!-- 5: Day Spa -->
+        <!-- 5 -->
         <button class="svc-card" type="button" aria-pressed="false">
           <div class="svc-inner">
             <div class="svc-face svc-front">
@@ -267,7 +288,7 @@
           </div>
         </button>
 
-        <!-- 6: Bridal -->
+        <!-- 6 -->
         <button class="svc-card" type="button" aria-pressed="false">
           <div class="svc-inner">
             <div class="svc-face svc-front">
@@ -304,23 +325,7 @@
     </div>
   </section>
 
-  <!-- CONTATO (mantive, mas o botão vai WhatsApp direto) -->
-  <!--<section id="contato">
-    <div class="container">
-      <div class="cta">
-        <h2>Agende seu momento DELLA</h2>
-        <p>Fale conosco pelo WhatsApp e reserve seu horário.</p>
-
-        <a class="btn-primary btn-cta" id="ctaContato" href="#" target="_blank" rel="noopener">
-          Agendar Agora
-        </a>
-
-        <small class="cta-note">Atendimento mediante agendamento • Resposta rápida pelo WhatsApp</small>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- FOOTER estilo “Bluma”, com Instagram único -->
+  <!-- FOOTER estilo Bluma, com Instagram único -->
   <footer class="footer">
     <div class="container footer-grid">
 
@@ -380,4 +385,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
