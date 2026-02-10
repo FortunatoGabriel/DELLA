@@ -562,11 +562,6 @@ section{ padding: 90px 0; }
   transition: all .25s ease;
 }
 
-/* Hover elegante */
-.nav-toggle:hover span{
-  background: var(--hover-rose);
-}
-
 .mobile-menu{
   position: fixed;
   inset: 0;
@@ -616,12 +611,6 @@ section{ padding: 90px 0; }
   color: var(--roxo-principal);
   cursor: pointer;
   transition: all .25s ease;
-}
-
-.mobile-menu__close:hover{
-  border-color: rgba(200,154,154,0.55);
-  color: var(--hover-rose);
-  transform: translateY(-1px);
 }
 
 .mobile-menu__nav{
