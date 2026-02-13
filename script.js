@@ -6,7 +6,7 @@
 // WhatsApp links (menu + CTAs + mini cards)
 // ========================
 (function setupWhatsappLinks(){
-  const num = (window.WHATSAPP_NUMBER || "5500000000000").toString();
+  const num = (window.WHATSAPP_NUMBER || "5511996993746").toString();
   const base = `https://wa.me/${num}`;
 
   const menu = document.getElementById("menuWhatsapp");
